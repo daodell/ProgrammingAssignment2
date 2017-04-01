@@ -5,13 +5,17 @@
 
 makeCacheMatrix <- function(x = matrix()) {
         
-        # getter function
-        get <- function() x
-        
         # setter function
         set <- function(y) {
                 x <<- y
         }
+        
+        # getter function
+        get <- function() x
+        #list
+        list (set = set, get=get)
+        
+       
 
 }
 
