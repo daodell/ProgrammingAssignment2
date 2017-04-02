@@ -1,17 +1,20 @@
-## Put comments here that give an overall description of what your
-## functions do 
+## This file contains two functions. 
+#One function caches the matrix and inverse matrix.
+#The other function calculates the inverse matrix. 
 
-## Write a short comment describing this function
+## This function caches values for the current matrix, inverse matrix
+#and the previous matrix.
 
 makeCacheMatrix <- function(x = matrix() )  {
 
         cache <- NULL
         cache_matrix <- NULL
         
-        # get function
+        # get function - gets the x argument
         get <- function() x
         
-        #set last matrix
+        #set_last matrix - the last matrix used 
+        #to calcuate the inverse matrix
         set_last <- function(y) {
                 cache_matrix <<-y
         }
@@ -19,12 +22,12 @@ makeCacheMatrix <- function(x = matrix() )  {
         #get last matrix
         get_last <- function() cache_matrix
         
-        # set function for 
+        #setcache function - set inverse matrix cache
         setcache <- function(y) {
                 cache <<- y
         }
         
-        # getter matrix inverse cache function
+        # getcache matrix - get inverse cache function
         getcache <- function() cache
         
         #list function names
@@ -33,22 +36,24 @@ makeCacheMatrix <- function(x = matrix() )  {
 }
 
 
-## Write a short comment describing this function
+## This function returns a matrix that is the inverse of 'x'.  If the inverse 
+#matrix has already been calculated, then it retrieves the inverse matrix
+#from cache. 
 
 cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
-        y <- x$get()
-        lll <- x$get_last()
+       
+        matrix <- x$get()
+        last_matrix<- x$get_last()
         
-        if(identical(y,lll)) {
+        if(identical(matrix,last_matrix)) {
                 print(" get inverese matrix from cache")
                 invMatrix <- x$getcache()
         }
         else {
-                print("calculate the mainverse matrix")
-                invMatrix <- solve(y)
+                print("calculate the inverse matrix")
+                invMatrix <- solve(matrix)
                 x$setcache(invMatrix)
-                x$set_last(y)
+                x$set_last(matrix)
                 
         }
                
