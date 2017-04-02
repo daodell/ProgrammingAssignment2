@@ -38,11 +38,21 @@ makeCacheMatrix <- function(x = matrix() )  {
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
         y <- x$get()
-        invMatrix <- solve(y)
+        lll <- x$get_last()
         
-        x$setcache(invMatrix)
-        x$set_last(y)
-        invMatrix
-         
+        if(identical(y,lll)) {
+                print(" get inverese matrix from cache")
+                invMatrix <- x$getcache()
+        }
+        else {
+                print("calculate the mainverse matrix")
+                invMatrix <- solve(y)
+                x$setcache(invMatrix)
+                x$set_last(y)
+                
+        }
+               
+        invMatrix        
+        
                 
 }
